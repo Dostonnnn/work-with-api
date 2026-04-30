@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: burlywood;
+}
+
+.cards {
+    color: darkred;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.list {
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.list-item {
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    height: 250px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: bisque;
+    transition: all 0.3s linear;
+    border: 2px solid darkred;
+    
+}
+
+.list-item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.title {
+    color: darkred;
+    text-align: center;
+    font-size: 16px;
+}
+
+.number {
+    color: red;
+    font-size: 20px;
+}
+
+.mes {
+    color: blue;
+    font-size: 20px;
+}
