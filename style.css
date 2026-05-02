@@ -2,62 +2,89 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: burlywood;
+    background-color: #f4f7f6;
+    color: #333;
 }
 
 .cards {
-    color: darkred;
+    margin: 60px auto;
     text-align: center;
-    margin: 50px auto;
+}
+
+.cards h1 {
+    font-size: 2rem;
+    color: #2c3e50;
 }
 
 .list {
-    padding: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 30px;
+    justify-items: center;
 }
 
 .list-item {
-    padding: 10px;
-    border-radius: 10px;
-    width: 200px;
-    height: 250px;
-    color: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 240px;
+    height: 280px;
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    background-color: bisque;
+    gap: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
     transition: all 0.3s linear;
-    border: 2px solid darkred;
-    
 }
 
 .list-item:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid #3498db;
 }
 
 .title {
-    color: darkred;
-    text-align: center;
+    color: #7f8c8d;
     font-size: 16px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .number {
-    color: red;
-    font-size: 20px;
+    color: #2c3e50;
+    font-size: 32px;
+    font-weight: 700;
 }
 
 .mes {
-    color: blue;
-    font-size: 20px;
+    color: #3498db;
+    font-size: 18px;
+    font-weight: 500;
+    background: #ebf5fb;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.add {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    font-size: 16px;
+    font-weight: 600;
 }

@@ -77,14 +77,20 @@ Ask.addEventListener("readystatechange", (e) => {
         const info = JSON.parse(Ask.responseText);
         info.forEach((element) => {
             List.innerHTML += `
-        <div class="list-item">
-            <h3 class="title">${element.title}</h3>
-            <p class="number">${element.id}</p>
-            <p class="mes">${element.completed}</p>
-        </div>
-            `
-        })
+                <div class="list-item">
+                    <h3 class="title">${element.title}</h3>
+                    <p class="number">${element.id}</p>
+                    <p class="mes">${element.completed}</p>
+                    <button class="add">Add</button>
+                </div>
+            `;
+        });
     }
-})
+});
+
+let array = [];
+const add = document.querySelectorAll(".add");
+const basketList = document.querySelector(".basket-list");
+const basketItem = document.querySelector(".basket-item");
 Ask.open("GET", "https://jsonplaceholder.typicode.com/todos");
 Ask.send();
