@@ -1,96 +1,64 @@
-// localStorage.setItem("ism", "Doston");
-// const result = localStorage.getItem("ism");
-// console.log(result);
-// // localStorage.removeItem("ism");
-// if (localStorage.getItem("ism")) {
-//     console.log("Ism mavjud");
-// } else {
-//     console.log("Ism mavjud emas");
-// }
-// // const ask = prompt("Sevimli rangingiz: ");
-// // localStorage.setItem("favorite color", ask);
-// // console.log("Sevimli rangi: " + localStorage.getItem("favorite color"))
-// // localStorage.clear();
-//
-// localStorage.setItem("rang", "qora");
-// const len = localStorage.length;
-// console.log(len);
-//
-// const first = localStorage.key(0);
-// console.log(first);
-//
-// localStorage.setItem("shahar", "Samarqand");
-// localStorage.setItem("shahar", "Toshkent");
-// console.log(localStorage.getItem("shahar"));
-//
-// if (localStorage.length > 0) {
-//     console.log("Kiritilgan");
-// } else {
-//     console.log("Mehmon");
-// }
-//
-// const user = {
-//     name: "Doston",
-//     age: 20,
-// };
-// const result2 = JSON.stringify(user);
-// console.log(result2);
-//
-// const result3 = JSON.parse(result2).name;
-// console.log(result3);
-//
-// const ob = {};
-// const js = JSON.stringify(ob);
-// localStorage.setItem("ob", js);
-//
-// const arr = [1, 2, 3, 4, 5];
-// const js2 = JSON.stringify(arr);
-// localStorage.setItem("arr", js2);
-// const arr2 = JSON.parse(localStorage.getItem("arr"));
-// arr2.push(6);
-// const js3 = JSON.stringify(arr2);
-// localStorage.setItem("arr", js3);
-// const check = localStorage.getItem("arr");
-// console.log(check);
-//
-// const settings = {
-//     theme: "dark",
-//     fontSize: "16px",
-// };
-// localStorage.setItem("settings", JSON.stringify(settings));
-// console.log(localStorage.getItem("settings"));
-//
-// const mahsulotlar = {salom: "alik"};
-// localStorage.setItem("mahsulotlar", JSON.stringify(mahsulotlar));
-// localStorage.removeItem("mahsulotlar");
-//
-// const win = window;
-// win.addEventListener("load", (e) => {
-// });
+const list = document.querySelector('.list');
+const card = document.querySelector('.card');
+const request = new XMLHttpRequest();
+const basket = document.querySelector('.basket');
+request.addEventListener("readystatechange", () => {
+    if (request.readyState === 4 && request.status === 200) {
+        const data = JSON.parse(request.responseText);
+        render(data);
+    }
+})
+
+function render(data) {
+    list.innerHTML = '';
+    data.forEach(item => {
+        if (item.title.length > 20) {
+            item.title = item.title.slice(0, 20) + '...';
+        }
+        list.innerHTML += `
+        <div class="list-item">
+            <h3 class="title">${item.title}</h3>
+            <p class="number">${item.id}</p>
+            <p class="mes">${item.completed}</p>
+            <button class="add">Add</button>
+        </div>
+        `;
+        addButton(data);
+
+    })
+}
 
 
-const List = document.querySelector(".list");
-const Ask = new XMLHttpRequest();
+function addButton(data) {
+    const add = document.querySelectorAll('.add');
 
-Ask.addEventListener("readystatechange", (e) => {
-    if (Ask.readyState === 4) {
-        const info = JSON.parse(Ask.responseText);
-        info.forEach((element) => {
-            List.innerHTML += `
-                <div class="list-item">
-                    <h3 class="title">${element.title}</h3>
-                    <p class="number">${element.id}</p>
-                    <p class="mes">${element.completed}</p>
-                    <button class="add">Add</button>
+    add.forEach((item, id) => {
+        item.addEventListener('click', () => {
+            const product = data[id];
+            const comp = String(product.id).padStart(3, '0');
+
+            card.innerHTML += `
+                <div class="remove-div">
+                    <p class="basket-number">${comp}</p>
+                    <p class="basket-number">${product.completed}</p>
+                    <button class="remove">Remove</button>
                 </div>
             `;
+            removeButton(data);
         });
-    }
-});
+    });
+}
 
-let array = [];
-const add = document.querySelectorAll(".add");
-const basketList = document.querySelector(".basket-list");
-const basketItem = document.querySelector(".basket-item");
-Ask.open("GET", "https://jsonplaceholder.typicode.com/todos");
-Ask.send();
+function removeButton(data) {
+    const remove = document.querySelectorAll('.remove');
+    remove.forEach((item) => {
+        item.addEventListener('click', () => {
+            const product = item.parentElement;
+            product.innerHTML = '';
+            product.style.display = 'none';
+        })
+    })
+}
+
+request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+request.send();
