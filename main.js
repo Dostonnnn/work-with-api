@@ -31,12 +31,10 @@ function render(data) {
 
 function addButton(data) {
     const add = document.querySelectorAll('.add');
-
     add.forEach((item, id) => {
         item.addEventListener('click', () => {
             const product = data[id];
             const comp = String(product.id).padStart(3, '0');
-
             card.innerHTML += `
                 <div class="remove-div">
                     <p class="basket-number">${comp}</p>
@@ -44,9 +42,13 @@ function addButton(data) {
                     <button class="remove">Remove</button>
                 </div>
             `;
+
             removeButton(data);
+
         });
     });
+
+
 }
 
 function removeButton(data) {
